@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ali Runs | Book a 2K27 session</title>
+<meta name="description" content="Book a 2s, 3s, or Rec run in NBA 2K27 with Ali. Pick a time and send a request.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Big+Shoulders+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0e1730;--ink2:#16224a;--line:#f4f6fb;--mute:#a9b4d0;--orange:#ff6a1f;--sky:#8fb4ff;--wood:#d9a15b;--ok:#6fe3a0;--bad:#ff8a8a;--r:10px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--line);font:400 17px/1.6 Barlow,system-ui,sans-serif}
+h1,h2,h3{font-family:'Big Shoulders Display',Impact,sans-serif;line-height:1;margin:0;letter-spacing:.01em}
+a{color:var(--sky)}
+:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0;gap:16px;flex-wrap:wrap}
+nav b{font:900 26px 'Big Shoulders Display',sans-serif}
+nav div a{margin-left:18px;text-decoration:none;color:var(--mute);font-weight:500}
+nav div a:hover{color:var(--line)}
+.hero{position:relative;overflow:hidden;border-bottom:3px solid var(--orange)}
+.hero svg.court{position:absolute;right:-120px;top:-40px;width:760px;opacity:.13;pointer-events:none}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;padding-top:40px;padding-bottom:64px}
+.hero h1{font-size:clamp(64px,11vw,132px);font-weight:900}
+.hero p{max-width:34ch;color:var(--mute);font-size:19px;margin:18px 0 26px}
+.btn{display:inline-block;background:var(--orange);color:#1a0c00;font:700 18px Barlow,sans-serif;padding:13px 26px;border:0;border-radius:var(--r);cursor:pointer;text-decoration:none}
+.btn:hover{filter:brightness(1.08)}
+.btn[disabled]{opacity:.55;cursor:wait}
+.board{background:#070d1f;border:2px solid var(--ink2);border-radius:14px;padding:22px;font-family:'Big Shoulders Display',sans-serif}
+.board small{display:block;font:500 15px Barlow,sans-serif;color:var(--mute)}
+.board .next{font-size:40px;font-weight:700;color:var(--orange);line-height:1.05;margin:6px 0 14px}
+.board ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+.board li{background:var(--ink2);border-radius:8px;padding:10px 0;font-size:30px;font-weight:700}
+.board li span{display:block;font:500 13px Barlow,sans-serif;color:var(--mute)}
+section{padding:64px 0;border-bottom:1px solid var(--ink2)}
+section h2{font-size:clamp(40px,6vw,64px);margin-bottom:10px}
+.lead{color:var(--mute);max-width:60ch;margin:0 0 28px}
+.modes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:30px}
+.mode input{position:absolute;opacity:0}
+.mode label{display:block;height:100%;background:var(--ink2);border:2px solid transparent;border-radius:var(--r);padding:18px;cursor:pointer}
+.mode input:checked+label{border-color:var(--orange);background:#1d2c5e}
+.mode input:focus-visible+label{outline:3px solid var(--orange);outline-offset:2px}
+.mode{position:relative}
+.mode h3{font-size:46px}
+.mode p{margin:6px 0 0;color:var(--mute);font-size:15.5px}
+.mode em{font-style:normal;color:var(--wood);font-weight:600;font-size:15px}
+.step{font:700 22px 'Big Shoulders Display',sans-serif;margin:26px 0 10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--ink2);color:var(--line);border:2px solid transparent;border-radius:999px;padding:8px 16px;font:500 16px Barlow,sans-serif;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--orange);color:#1a0c00;font-weight:700}
+.chip small{display:block;font-size:12px;opacity:.8}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.f label{display:block;font-weight:600;margin-bottom:4px;font-size:15px}
+.f input,.f select,.f textarea{width:100%;background:#070d1f;color:var(--line);border:2px solid var(--ink2);border-radius:8px;padding:11px 12px;font:inherit}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--sky);outline:0}
+.f{margin-bottom:14px}
+.hp{position:absolute;left:-9999px}
+.sum{background:#070d1f;border-left:4px solid var(--orange);padding:12px 16px;border-radius:0 8px 8px 0;margin:18px 0;color:var(--mute);min-height:52px}
+.sum b{color:var(--line)}
+.msg{margin-top:14px;padding:14px 16px;border-radius:8px;display:none}
+.msg.ok{display:block;background:#10331f;color:var(--ok)}
+.msg.err{display:block;background:#3a1717;color:var(--bad)}
+.note{font-size:14px;color:var(--mute);margin-top:10px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.card{background:var(--ink2);border-radius:var(--r);padding:22px}
+.card h3{font-size:32px;margin-bottom:10px}
+.card ul{margin:0;padding-left:20px}
+.card li{margin-bottom:7px}
+.tips h3{font-size:34px;color:var(--orange)}
+.tips p{margin:6px 0 0;color:var(--mute)}
+details{background:var(--ink2);border-radius:8px;padding:14px 18px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:600}
+details p{margin:10px 0 0;color:var(--mute)}
+footer{padding:36px 0;color:var(--mute);font-size:14px}
+@media(max-width:800px){.hero .wrap,.modes,.cols,.grid2{grid-template-columns:1fr}.hero svg.court{right:-300px}nav div a{margin:0 14px 0 0}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+<svg class="court" viewBox="0 0 500 470" fill="none" stroke="#fff" stroke-width="4" aria-hidden="true"><rect x="2" y="2" width="496" height="466"/><rect x="170" y="2" width="160" height="190"/><circle cx="250" cy="192" r="60"/><path d="M30 2v140a220 220 0 0 0 440 0V2"/><circle cx="250" cy="52" r="14"/><path d="M215 36h70"/></svg>
+<div class="wrap">
+<div>
+<nav><b>ALI RUNS</b><div><a href="#book">Book</a><a href="#guide">2K27 guide</a><a href="#rules">Rules</a><a href="#faq">FAQ</a></div></nav>
+<h1>Run 2K27<br>with Ali.</h1>
+<p>Free. Pick 2s, 3s, or Rec, choose a time, and send a request. I confirm by email.</p>
+<a class="btn" href="#book">Book a run</a>
+</div>
+<div class="board" aria-live="polite">
+<small>Xbox gamertag: vStoppedALI</small><small>Next open run</small>
+<div class="next" id="next">Loading times...</div>
+<ul><li>2s<span>2 on 2</span></li><li>3s<span>3 on 3</span></li><li>Rec<span>5 on 5</span></li></ul>
+</div>
+</div>
+</header>
+
+<main class="wrap">
+
+<section id="book">
+<h2>Book a run</h2>
+<p class="lead">These runs are free and last about 90 minutes. All times are Eastern Time (New York), and if you are in another time zone, your local time is shown under each slot. This sends a request, and your spot is held once I confirm by email.</p>
+<div id="aliPlat" class="note">I play on Xbox. Gamertag: <b>vStoppedALI</b>. Not on Xbox? You can still book and we will check by email whether crossplay works.</div>
+<form id="f" novalidate>
+<div class="step">1. Pick a mode</div>
+<div class="modes" role="radiogroup" aria-label="Mode">
+<div class="mode"><input type="radio" name="mode" id="m2" value="2s"><label for="m2"><h3>2s</h3><em>2 on 2, just us two</em><p>Fast and personal. Constant pick and roll, and every possession counts. You need to be able to shoot and defend.</p></label></div>
+<div class="mode"><input type="radio" name="mode" id="m3" value="3s"><label for="m3"><h3>3s</h3><em>3 on 3, bring a friend</em><p>The classic park run. Spacing, rotations, and calling switches matter. Add a third player below or I will find one.</p></label></div>
+<div class="mode"><input type="radio" name="mode" id="mr" value="Rec"><label for="mr"><h3>Rec</h3><em>5 on 5 in The REC</em><p>I put a full 5 man squad together and you join it. Bring friends if you want. The venue rotates each game.</p></label></div>
+</div>
+
+<div class="step">2. Pick a day</div>
+<div class="chips" id="days"></div>
+<div class="step">3. Pick a time</div>
+<div class="chips" id="times"><span class="note">Choose a day first.</span></div>
+
+<div class="step">4. Your details</div>
+<div class="grid2">
+<div class="f"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required></div>
+<div class="f"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+<div class="f"><label for="tag">Gamertag / PSN / Steam name</label><input id="tag" name="gamertag" required></div>
+<div class="f"><label for="plat">Platform</label><select id="plat" name="platform" required><option value="">Choose one</option><option>PlayStation 5</option><option>Xbox Series X|S</option><option>PC (Steam)</option><option>Nintendo Switch 2</option></select></div>
+<div class="f"><label for="build">Your MyPLAYER build (optional)</label><input id="build" name="build" placeholder="e.g. Sharpshooting Playmaker"></div>
+<div class="f"><label for="friend">Bringing someone? Their gamertag (optional)</label><input id="friend" name="friend"></div>
+</div>
+<div class="f"><label for="notes">Anything else (optional)</label><textarea id="notes" name="notes" rows="3" placeholder="Skill level, mic or no mic, what you want to work on"></textarea></div>
+<input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+<div class="sum" id="sum">Pick a mode, a day, and a time to see your summary.</div>
+<button class="btn" id="go" type="submit">Send request</button>
+<div class="msg" id="msg" role="status"></div>
+</form>
+</section>
+
+<section id="guide">
+<h2>2K27 guide</h2>
+<p class="lead">NBA 2K27 launched September 4, 2026 on PS5, Xbox Series X|S, PC through Steam, and Nintendo Switch 2. Here is what to know before we run.</p>
+<div class="cols">
+<div class="card"><h3>Before you book</h3>
+<ul>
+<li>You need NBA 2K27 and an NBA 2K account.</li>
+<li>The City and every mode we play needs an internet connection. Only Play Now, MyNBA, and The W work offline.</li>
+<li>On Xbox, online multiplayer needs Game Pass Essential, Premium, or Ultimate. Check what your console requires for online play.</li>
+<li>Make a MyPLAYER first so you can walk into The City.</li>
+<li>I play on Xbox (vStoppedALI). Any platform can book. I will confirm by email whether we can play together.</li>
+</ul></div>
+<div class="card"><h3>What is new this year</h3>
+<ul>
+<li>The City is co-ed for the first time. All modes are open to every MyPLAYER.</li>
+<li>The REC rotates between five venues, including a High School Gym and an Outdoor Court.</li>
+<li>Street Kings adds Rucker Park.</li>
+<li>Crew HQ and Casual Corner are new spaces, and Daily Rivals tracks daily standings.</li>
+<li>MyPLAYER Builder adds Builder Pass, Badge Tokens, and Synergy Boosts.</li>
+<li>The NBA 2K HQ companion app lets you manage your crew, chat, and check leaderboards.</li>
+</ul></div>
+</div>
+<div class="step" style="margin-top:34px">Game plan by mode</div>
+<div class="cols tips">
+<div><h3>2s</h3><p>Two players means no hiding. Set the pick and roll, make the defense pick a side, and talk on every switch. One of you has to be a real shooting threat.</p></div>
+<div><h3>3s</h3><p>Fill three roles: a creator, a shooter, and a rebounder or rim protector. Space the floor, rotate on help defense, and do not all chase the ball at once.</p></div>
+<div><h3>Rec</h3><p>Play your role, box out, and pass up bad shots. Use the mic to call matchups. Five players with one plan beat five players with five. I line up the squad, so a Rec booking may take a bit longer to confirm.</p></div>
+<div><h3>Everyone</h3><p>Learn your shot timing, watch your stamina, contest without fouling, and keep your head after a bad quarter.</p></div>
+</div>
+</section>
+
+<section id="rules">
+<h2>House rules</h2>
+<div class="cols">
+<div class="card"><ul>
+<li>Be ready 10 minutes early. I wait 10 minutes past start time, then release the slot.</li>
+<li>No quitting mid-game.</li>
+<li>Good sportsmanship, no trash talk that crosses the line.</li>
+</ul></div>
+<div class="card"><ul>
+<li>A mic is strongly encouraged but not required.</li>
+<li>Cancel by replying to your confirmation email, ideally 2 hours ahead.</li>
+<li>This is a casual run, not a coaching session, but I am happy to share tips.</li>
+</ul></div>
+</div>
+</section>
+
+<section id="faq">
+<h2>FAQ</h2>
+<details><summary>How do I know I am booked?</summary><p>Your request goes straight to my email. I reply to the address you give to confirm the day, time, and how to add me as a friend. Check spam if you do not see it.</p></details>
+<details><summary>Can two people book the same time?</summary><p>Possibly. This site cannot see other requests, so I confirm slots in the order they arrive and suggest another time if one is taken.</p></details>
+<details><summary>What time zone are the times in?</summary><p>Eastern Time (New York). If your device is in another zone, your local time is shown next to each slot.</p></details>
+<details><summary>I am not on Xbox. Can we still run?</summary><p>Book anyway. I will email you to check whether crossplay works for us. If it does not, no problem.</p></details>
+<details><summary>Does it cost anything?</summary><p>No, the runs are free.</p></details>
+<details><summary>Do I need to be good?</summary><p>No. Say your skill level in the notes and I will match the pace.</p></details>
+</section>
+
+</main>
+<footer><div class="wrap">Ali Runs is an independent fan run and is not affiliated with 2K, the NBA, or Take-Two. NBA 2K is a trademark of Take-Two Interactive.</div></footer>
+
+<script>
+const CONFIG={
+  email:'a.c.shasho@gmail.com',
+  tz:'America/New_York',
+  daysAhead:14,
+  leadHours:3,
+  times:{weekday:['19:00','20:30','22:00'],weekend:['13:00','15:00','19:00','20:30']},
+  blocked:[]                          // slots you are busy, e.g. '2026-11-07 19:00'
+};
+const $=s=>document.querySelector(s),pad=n=>String(n).padStart(2,'0');
+const sel={mode:'',slot:null};
+function parts(ts,z){const o={};new Intl.DateTimeFormat('en-US',{timeZone:z,hourCycle:'h23',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',minute:'numeric'}).formatToParts(ts).forEach(p=>o[p.type]=+p.value);return o}
+function toUtc(y,m,d,h,mi){const g=Date.UTC(y,m-1,d,h,mi),off=t=>{const p=parts(t,CONFIG.tz);return Date.UTC(p.year,p.month-1,p.day,p.hour,p.minute)-t};let t=g-off(g);const o2=off(t);if(o2!==g-t)t=g-o2;return t}
+const fmtET=ts=>new Intl.DateTimeFormat('en-US',{timeZone:CONFIG.tz,hour:'numeric',minute:'2-digit'}).format(ts)+' ET';
+const myTz=Intl.DateTimeFormat().resolvedOptions().timeZone,sameTz=myTz===CONFIG.tz;
+const fmtMine=ts=>new Intl.DateTimeFormat('en-US',{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}).format(ts);
+
+const now=Date.now(),p0=parts(now,CONFIG.tz),days=[];
+for(let i=0;i<CONFIG.daysAhead;i++){
+  const dt=new Date(Date.UTC(p0.year,p0.month-1,p0.day+i)),y=dt.getUTCFullYear(),m=dt.getUTCMonth()+1,d=dt.getUTCDate(),dow=dt.getUTCDay();
+  const list=dow===0||dow===6?CONFIG.times.weekend:CONFIG.times.weekday;
+  const slots=list.map(t=>{const[h,mi]=t.split(':').map(Number);return{key:`${y}-${pad(m)}-${pad(d)} ${t}`,ts:toUtc(y,m,d,h,mi)}})
+    .filter(s=>s.ts>now+CONFIG.leadHours*36e5&&!CONFIG.blocked.includes(s.key));
+  if(slots.length)days.push({label:new Intl.DateTimeFormat('en-US',{timeZone:'UTC',weekday:'short',month:'short',day:'numeric'}).format(dt),slots});
+}
+
+function renderDays(){
+  const box=$('#days');box.innerHTML='';
+  days.forEach((d,i)=>{const b=document.createElement('button');b.type='button';b.className='chip';b.textContent=d.label;b.setAttribute('aria-pressed','false');
+    b.onclick=()=>{[...box.children].forEach(c=>c.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');renderTimes(i)};box.appendChild(b)});
+  if(!days.length)box.innerHTML='<span class="note">No open times right now. Check back soon.</span>';
+}
+function renderTimes(i){
+  const box=$('#times');box.innerHTML='';sel.slot=null;summary();
+  days[i].slots.forEach(s=>{const b=document.createElement('button');b.type='button';b.className='chip';b.setAttribute('aria-pressed','false');
+    b.innerHTML=fmtET(s.ts)+(sameTz?'':`<small>${fmtMine(s.ts)} your time</small>`);
+    b.onclick=()=>{[...box.children].forEach(c=>c.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');sel.slot=s;summary()};box.appendChild(b)});
+}
+function slotText(){if(!sel.slot)return'';const d=new Intl.DateTimeFormat('en-US',{timeZone:CONFIG.tz,weekday:'long',month:'long',day:'numeric'}).format(sel.slot.ts);return`${d}, ${fmtET(sel.slot.ts)}`}
+function summary(){
+  const s=$('#sum');
+  s.innerHTML=(sel.mode&&sel.slot)?`<b>${sel.mode}</b> with Ali on <b>${slotText()}</b>${sameTz?'':`<br>Your time: ${fmtMine(sel.slot.ts)}`}`:'Pick a mode, a day, and a time to see your summary.';
+}
+document.querySelectorAll('input[name=mode]').forEach(r=>r.onchange=()=>{sel.mode=r.value;summary()});
+
+if(days.length){const s=days[0].slots[0];$('#next').textContent=`${days[0].label}, ${fmtET(s.ts)}`}else $('#next').textContent='Check back soon';
+renderDays();
+
+$('#f').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const f=e.target,msg=$('#msg'),btn=$('#go');msg.className='msg';msg.textContent='';
+  const need=['name','email','tag','plat'];
+  if(!sel.mode||!sel.slot||need.some(id=>!$('#'+id).value.trim())||!f.email.checkValidity()){msg.className='msg err';msg.textContent='Pick a mode, day, and time, and fill in your name, a valid email, gamertag, and platform.';return}
+  if(f._honey.value)return;
+  const data={name:f.name.value,email:f.email.value,gamertag:f.gamertag.value,platform:f.platform.value,mode:sel.mode,
+    session_et:slotText(),session_your_time:fmtMine(sel.slot.ts)+' ('+myTz+')',build:f.build.value||'-',friend:f.friend.value||'-',notes:f.notes.value||'-',
+    _subject:`2K booking request: ${sel.mode} on ${slotText()} (${f.name.value})`,_template:'table',_captcha:'false'};
+  btn.disabled=true;btn.textContent='Sending...';
+  try{
+    const r=await fetch('https://formsubmit.co/ajax/'+CONFIG.email,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(data)});
+    const j=await r.json();
+    if(!r.ok||j.success==='false'||j.success===false)throw new Error(j.message||'failed');
+    msg.className='msg ok';msg.textContent=`Request sent for ${sel.mode} on ${slotText()}. Watch your email (and spam) for my confirmation.`;
+    f.reset();sel.mode='';sel.slot=null;$('#times').innerHTML='<span class="note">Choose a day first.</span>';[...$('#days').children].forEach(c=>c.setAttribute('aria-pressed','false'));summary();
+  }catch(err){
+    msg.className='msg err';msg.innerHTML='Something went wrong sending that. Try again, or email me directly at <a href="mailto:'+CONFIG.email+'">'+CONFIG.email+'</a>.';
+  }finally{btn.disabled=false;btn.textContent='Send request'}
+});
+</script>
+</body>
+</html>
